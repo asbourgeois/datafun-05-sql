@@ -1,4 +1,4 @@
--- sql/duckdb/case_retail_bootstrap.sql
+-- sql/duckdb/asbourgeois_library_bootstrap.sql
 -- ============================================================
 -- PURPOSE
 -- ============================================================
@@ -8,17 +8,17 @@
 -- We always run all commands from the project root directory.
 --
 -- EXPECTED PROJECT PATHS (relative to repo root):
---   SQL:  sql/duckdb/case_retail_bootstrap.sql
---   CSV:  data/retail/store.csv
---   CSV:  data/retail/sale.csv
---   DB:   artifacts/duckdb/retail.duckdb
+--   SQL:  sql/duckdb/asbourgeois_library_bootstrap.sql
+--   CSV:  data/library/checkout.csv
+--   CSV:  data/library/branch.csv
+--   DB:   artifacts/duckdb/library.duckdb
 --
 --
 -- ============================================================
 -- TOPIC DOMAINS + 1:M RELATIONSHIPS
 -- ============================================================
 -- OUR DOMAINS:
--- Each domain (e.g. retail) has two tables.
+-- Each domain (e.g. library) has two tables.
 -- They are related in a 1-to-many relationship (1:M).
 --
 -- GENERAL:
@@ -30,12 +30,12 @@
 -- - They are related by a foreign key in the dependent/child table
 --   that references the primary key in the independent/parent table.
 --
--- OUR DOMAIN: RETAIL
--- In retail, stores sell many products.
--- Therefore, we have two tables: store (1) and sale (M).
--- - The store table is the independent/parent table (1).
--- - The sale table is the dependent/child table (M).
--- - The foreign key in the sale table references the primary key in the store table.
+-- OUR DOMAIN: LIBRARY
+-- In libraries, items are check out using different systems.
+-- Therefore, we have two tables: branch (1) and checkout (M).
+-- - The branch table is the independent/parent table (1).
+-- - The checkout table is the dependent/child table (M).
+-- - The foreign key in the checkout table references the primary key in the branch table.
 --
 -- REQ: Tables must be created in order to satisfy foreign key constraints.
 -- REQ: Data must be loaded in order to satisfy foreign key constraints.
@@ -57,31 +57,31 @@ BEGIN TRANSACTION;
 -- STEP 1: CREATE TABLES (PARENT FIRST, THEN CHILD)
 -- ============================================================
 -- The independent table must be created first.
--- In retail, stores exist independently of sales.
--- Therefore, create the store table before the sale table.
+-- In libraries, branches and systems used are independent of what items are checked out.
+-- Therefore, create the branch table before the checkout table.
 --
--- Create the `store` table using DuckDB SQL syntax and data types.
+-- Create the `branch` table using DuckDB SQL syntax and data types.
 -- In our table, all the fields are required (NOT NULL).
 -- This means that every record must have a value for these fields.
--- The primary key is store_id, which uniquely identifies each store.
-CREATE TABLE IF NOT EXISTS store (
+-- The primary key is branch_id, which uniquely identifies each item.
+CREATE TABLE IF NOT EXISTS checkout (
   -- Every table must have a primary key that uniquely identifies each record.
-  store_id TEXT PRIMARY KEY,
-  store_name TEXT NOT NULL,
+  branch_id TEXT PRIMARY KEY,
+  branch_name TEXT NOT NULL,
   city TEXT NOT NULL,
-  region TEXT NOT NULL
+  system_name TEXT NOT NULL
 );
--- Create the `sale` table using DuckDB SQL syntax and data types.
+-- Create the `checkout` table using DuckDB SQL syntax and data types.
 CREATE TABLE IF NOT EXISTS sale (
   -- Every table must have a primary key that uniquely identifies each record.
-  sale_id TEXT PRIMARY KEY,
+  checkout_id TEXT PRIMARY KEY,
   -- Foreign key that references the primary key in the store table. It cannot be NULL.
-  store_id TEXT NOT NULL,
+  branch_id TEXT NOT NULL,
   -- All remaining fields are also required (NOT NULL).
-  product_category TEXT NOT NULL,
-  quantity INTEGER NOT NULL,
-  amount DOUBLE NOT NULL,
-  sale_date TEXT NOT NULL
+  material_type TEXT NOT NULL,
+  duration_days INTEGER NOT NULL,
+  fine_amount DOUBLE NOT NULL,
+  checkout_date TEXT NOT NULL
 );
 --
 --
@@ -92,19 +92,19 @@ CREATE TABLE IF NOT EXISTS sale (
 -- DuckDB allows us to load data from CSV files using the DuckDB COPY command.
 --
 -- The independent table must be loaded first.
--- In retail, stores exist independently of sales.
--- Therefore, load the store table before the sale table.
+-- In libraries, branches exist independently of the items they have.
+-- Therefore, load the branch table before the checkout table.
 --
 -- SQLITE ALTERNATIVE:
 -- If we used SQLite, we would load data using Python and pandas.
 -- Load the parent (independent) table first.
-COPY store
-FROM 'data/retail/store.csv'
+COPY branch
+FROM 'data/library/branch.csv'
 (HEADER, DELIMITER ',', QUOTE '"', ESCAPE '"');
 
 -- Load the child (dependent) table second.
-COPY sale
-FROM 'data/retail/sale.csv'
+COPY checkout
+FROM 'data/library/checkout.csv'
 (HEADER 1, DELIMITER ',', QUOTE '"', ESCAPE '"');
 
 --

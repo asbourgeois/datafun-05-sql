@@ -64,7 +64,7 @@ BEGIN TRANSACTION;
 -- In our table, all the fields are required (NOT NULL).
 -- This means that every record must have a value for these fields.
 -- The primary key is branch_id, which uniquely identifies each item.
-CREATE TABLE IF NOT EXISTS checkout (
+CREATE TABLE IF NOT EXISTS branch (
   -- Every table must have a primary key that uniquely identifies each record.
   branch_id TEXT PRIMARY KEY,
   branch_name TEXT NOT NULL,
@@ -72,7 +72,7 @@ CREATE TABLE IF NOT EXISTS checkout (
   system_name TEXT NOT NULL
 );
 -- Create the `checkout` table using DuckDB SQL syntax and data types.
-CREATE TABLE IF NOT EXISTS sale (
+CREATE TABLE IF NOT EXISTS checkout (
   -- Every table must have a primary key that uniquely identifies each record.
   checkout_id TEXT PRIMARY KEY,
   -- Foreign key that references the primary key in the store table. It cannot be NULL.

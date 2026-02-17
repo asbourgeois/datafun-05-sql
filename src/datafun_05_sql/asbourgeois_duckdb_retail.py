@@ -1,7 +1,7 @@
-"""case_duckdb_retail.py - Project script (example).
+"""asbourgeois_duckdb_retail.py - Project script
 
-Author: Denise Case
-Date: 2026-02
+Author: Alexia Bourgeois
+Date: 2026-02-16
 
 Purpose:
 - Read csv files into a DuckDB database.

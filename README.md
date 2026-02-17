@@ -72,7 +72,7 @@ Follow the detailed instructions at:
 3. Clone to local: Open a **machine terminal** in your **`Repos`** folder and clone your new repo.
 
 ```shell
-git clone https://github.com/YOURACCOUNT/datafun-05-sql
+git clone https://github.com/asbourgeois/datafun-05-sql
 ```
 
 4. Open project in VS Code: Change directory into the repo and open the project in VS Code by running `code .` ("code dot"):
@@ -137,7 +137,7 @@ git pull
 Run the Python source files:
 
 ```shell
-uv run python -m datafun_05_sql.case_duckdb_retail
+uv run python -m datafun_05_sql.asbourgeois_duckdb_retail
 ```
 
 Run Python checks and tests (as available):

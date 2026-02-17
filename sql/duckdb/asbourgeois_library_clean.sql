@@ -1,8 +1,8 @@
--- sql/duckdb/case_retail_clean.sql
+-- sql/duckdb/asbourgeois_library_clean.sql
 -- ============================================================
 -- PURPOSE
 -- ============================================================
--- Completely removes retail tables from the DuckDB database (DuckDB).
+-- Completely removes library tables from the DuckDB database (DuckDB).
 -- This "clean" step is used to reset the database so we can rebuild it.
 -- Creating a multi-table schema from scratch is a common practice in database management,
 -- and we often need to remove existing tables before recreating them during development or testing.
@@ -11,10 +11,10 @@
 -- We always run all commands from the project root directory.
 --
 -- EXPECTED PROJECT PATHS (relative to repo root):
---   SQL:  sql/duckdb/case_retail_clean.sql
---   CSV:  data/retail/store.csv
---   CSV:  data/retail/sale.csv
---   DB:   artifacts/duckdb/retail.duckdb
+--   SQL:  sql/duckdb/asbourgeois_library_clean.sql
+--   CSV:  data/library/branch.csv
+--   CSV:  data/library/checkout.csv
+--   DB:   artifacts/duckdb/library.duckdb
 --
 --
 -- ============================================================
@@ -34,11 +34,11 @@
 --   that references the primary key in the independent/parent table.
 --
 -- OUR DOMAIN: RETAIL
--- In retail, stores sell many products.
--- Therefore, we have two tables: store (1) and sale (M).
--- - The store table is the independent/parent table (1).
--- - The sale table is the dependent/child table (M).
--- - The foreign key in the sale table references the primary key in the store table.
+-- In libraries, branches have different items.
+-- Therefore, we have two tables: branch (1) and checkout (M).
+-- - The branch table is the independent/parent table (1).
+-- - The checkout table is the dependent/child table (M).
+-- - The foreign key in the checkout table references the primary key in the branch table.
 --
 -- REQ: Tables must be removed in reverse order (CHILD FIRST, THEN PARENT)
 --      to avoid foreign key constraint issues.
@@ -61,16 +61,16 @@ BEGIN TRANSACTION;
 -- ============================================================
 -- IMPORTANT:
 -- When removing tables in a 1:M relationship, drop the dependent/child table first.
--- In retail:
--- - sale depends on store (sale has store_id).
+-- In libraries:
+-- - items depends on the branch (checkout has branch_id).
 -- Therefore:
--- - Drop sale first, then drop store.
+-- - Drop checkout first, then drop branch.
 --
 -- Drop the dependent/child table (M) first.
-DROP TABLE IF EXISTS sale;
+DROP TABLE IF EXISTS checkout;
 
 -- Drop the independent/parent table (1) second.
-DROP TABLE IF EXISTS store;
+DROP TABLE IF EXISTS branch;
 --
 --
 -- ============================================================

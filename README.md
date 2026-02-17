@@ -137,7 +137,7 @@ git pull
 Run the Python source files:
 
 ```shell
-uv run python -m datafun_05_sql.asbourgeois_duckdb_retail
+uv run python -m datafun_05_sql.asbourgeois_duckdb_library
 ```
 
 Run Python checks and tests (as available):

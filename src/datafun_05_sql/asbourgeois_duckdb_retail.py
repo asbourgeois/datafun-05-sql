@@ -146,10 +146,7 @@ def main() -> None:
         # ----------------------------------------------------
         # STEP 3: RUN BASIC QUERIES
         # ----------------------------------------------------
-        run_sql_query(con, SQL_DIR / "case_retail_query_store_count.sql")
-        run_sql_query(con, SQL_DIR / "case_retail_query_sales_count.sql")
-        run_sql_query(con, SQL_DIR / "case_retail_query_sales_aggregate.sql")
-        run_sql_query(con, SQL_DIR / "case_retail_query_sales_by_category.sql")
+        run_sql_query(con, SQL_DIR / "asbourgeois_library_query_fine_aggregate.sql")
 
         # ----------------------------------------------------
         # STEP 4: RUN KPI QUERY (ACTION-DRIVEN)

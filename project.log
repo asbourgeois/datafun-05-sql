@@ -258,3 +258,29 @@
 2026-02-16 20:49:01 | INFO | P05 | RUN SQL script: C:\Repos\datafun-05-sql\sql\duckdb\asbourgeois_library_clean.sql
 2026-02-16 20:49:01 | INFO | P05 | DONE SQL script: C:\Repos\datafun-05-sql\sql\duckdb\asbourgeois_library_clean.sql
 2026-02-16 20:49:01 | INFO | P05 | RUN SQL script: C:\Repos\datafun-05-sql\sql\duckdb\asbourgeois_library_bootstrap.sql
+2026-02-16 20:55:17 | INFO | P05 | === RUN START ===
+2026-02-16 20:55:17 | INFO | P05 | project=P05 Pipeline Example (DuckDB)
+2026-02-16 20:55:17 | INFO | P05 | repo_dir=datafun-05-sql
+2026-02-16 20:55:17 | INFO | P05 | python=3.14.2
+2026-02-16 20:55:17 | INFO | P05 | os=Windows 10
+2026-02-16 20:55:17 | INFO | P05 | shell=powershell
+2026-02-16 20:55:17 | INFO | P05 | cwd=.
+2026-02-16 20:55:17 | INFO | P05 | github_actions=False
+2026-02-16 20:55:17 | INFO | P05 | START main()
+2026-02-16 20:55:17 | INFO | P05 | ROOT_DIR: C:\Repos\datafun-05-sql
+2026-02-16 20:55:17 | INFO | P05 | DATA_DIR: C:\Repos\datafun-05-sql\data\library
+2026-02-16 20:55:17 | INFO | P05 | SQL_DIR: C:\Repos\datafun-05-sql\sql\duckdb
+2026-02-16 20:55:17 | INFO | P05 | DB_PATH: C:\Repos\datafun-05-sql\artifacts\duckdb\library.duckdb
+2026-02-16 20:55:17 | INFO | P05 | RUN SQL script: C:\Repos\datafun-05-sql\sql\duckdb\asbourgeois_library_clean.sql
+2026-02-16 20:55:17 | INFO | P05 | DONE SQL script: C:\Repos\datafun-05-sql\sql\duckdb\asbourgeois_library_clean.sql
+2026-02-16 20:55:17 | INFO | P05 | RUN SQL script: C:\Repos\datafun-05-sql\sql\duckdb\asbourgeois_library_bootstrap.sql
+2026-02-16 20:55:17 | INFO | P05 | DONE SQL script: C:\Repos\datafun-05-sql\sql\duckdb\asbourgeois_library_bootstrap.sql
+2026-02-16 20:55:17 | INFO | P05 | 
+2026-02-16 20:55:17 | INFO | P05 | RUN SQL query: C:\Repos\datafun-05-sql\sql\duckdb\asbourgeois_library_query_fine_aggregate.sql
+2026-02-16 20:55:17 | INFO | P05 | ====================================
+2026-02-16 20:55:17 | INFO | P05 | asbourgeois_library_query_fine_aggregate.sql
+2026-02-16 20:55:17 | INFO | P05 | ====================================
+2026-02-16 20:55:17 | INFO | P05 | total_fine_count, total_fine, avg_fine_amount
+2026-02-16 20:55:17 | INFO | P05 | 5, 2.0, 0.4
+2026-02-16 20:55:17 | INFO | P05 | 
+2026-02-16 20:55:17 | INFO | P05 | RUN SQL query: C:\Repos\datafun-05-sql\sql\duckdb\asbourgeois_library_query_kpi_revenue.sql

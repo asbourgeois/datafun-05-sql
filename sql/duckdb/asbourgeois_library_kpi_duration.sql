@@ -1,4 +1,4 @@
--- sql/duckdb/asbourgeois_retail_kpi_revenue.sql
+-- sql/duckdb/asbourgeois_library_kpi_duration.sql
 -- ============================================================
 -- PURPOSE
 -- ============================================================
@@ -30,7 +30,7 @@
 -- We always run all commands from the project root directory.
 --
 -- EXPECTED PROJECT PATHS (relative to repo root):
---   SQL:  sql/duckdb/asbourgeois_library_kpi_revenue.sql
+--   SQL:  sql/duckdb/asbourgeois_library_kpi_duration.sql
 --   DB:   artifacts/duckdb/library.duckdb
 --
 --
@@ -75,18 +75,18 @@
 -- - ORDER results so we can quickly see top branches
 --
 SELECT
-  s.branch_id,
-  s.branch_name,
-  s.city,
-  s.system_name,
+  b.branch_id,
+  b.branch_name,
+  b.city,
+  b.system_name,
   COUNT(sa.checkout_id) AS checkout_count,
   ROUND(SUM(sa.duration_days), 2) AS total_amount_days,
-FROM branch AS s
+FROM branch AS b
 JOIN checkout AS sa
-  ON sa.branch_id = s.branch_id
+  ON sa.branch_id = b.branch_id
 GROUP BY
-  s.branch_id,
-  s.branch_name,
-  s.city,
-  s.system_name
+  b.branch_id,
+  b.branch_name,
+  b.city,
+  b.system_name
 ORDER BY total_amount_days DESC;

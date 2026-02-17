@@ -1,21 +1,21 @@
--- sql/duckdb/case_retail_query_sales_aggregate.sql
+-- sql/duckdb/asbourgeois_library_query_fine_aggregate.sql
 -- ============================================================
 -- PURPOSE
 -- ============================================================
--- Summarize overall sales activity across ALL stores.
+-- Summarize overall fine activity across ALL stores.
 --
 -- This query answers:
--- - "What is our total revenue?"
--- - "What is the average sale amount?"
+-- - "What is our total revenue from fines?"
+-- - "What is the average fine amount?"
 --
 -- WHY:
 -- - Establishes system-wide performance
 -- - Provides a baseline before breaking results down by store
 -- - Helps answer:
---   "Is overall performance up or down?"
+--   "Are items that are being checkout returned on time?"
 
 SELECT
-  COUNT(*) AS sale_count,
-  ROUND(SUM(amount), 2) AS total_revenue,
-  ROUND(AVG(amount), 2) AS avg_sale_amount
-FROM sale;
+  COUNT(*) AS total_fine_count,
+  ROUND(SUM(fine_amount), 2) AS total_fine,
+  ROUND(AVG(fine_amount), 2) AS avg_fine_amount
+FROM checkout;

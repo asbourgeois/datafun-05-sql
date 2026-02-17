@@ -79,11 +79,11 @@ SELECT
   b.branch_name,
   b.city,
   b.system_name,
-  COUNT(sa.checkout_id) AS checkout_count,
-  ROUND(SUM(sa.duration_days), 2) AS total_amount_days,
+  COUNT(bc.checkout_id) AS checkout_count,
+  ROUND(SUM(bc.duration_days), 2) AS total_amount_days,
 FROM branch AS b
-JOIN checkout AS sa
-  ON sa.branch_id = b.branch_id
+JOIN checkout AS bc
+  ON bc.branch_id = b.branch_id
 GROUP BY
   b.branch_id,
   b.branch_name,

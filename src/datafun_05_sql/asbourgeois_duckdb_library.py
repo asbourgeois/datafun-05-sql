@@ -151,7 +151,7 @@ def main() -> None:
         # ----------------------------------------------------
         # STEP 4: RUN KPI QUERY (ACTION-DRIVEN)
         # ----------------------------------------------------
-        run_sql_query(con, SQL_DIR / "asbourgeois_library_query_kpi_revenue.sql")
+        run_sql_query(con, SQL_DIR / "asbourgeois_library_kpi_duration.sql")
 
     finally:
         # Regardless of success or failure, always close the connection
